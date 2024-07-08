@@ -58,7 +58,14 @@ int soad_initalize()
 soad_ctx_t soad_openSocket(ip_protocol_t protocol, char* ip ,uint32_t port )
 {
 	soad_ctx_t soad_ctx = {0xFF};
-    soad_ctx.fd = socket(AF_INET, SOCK_DGRAM, 0);
+	if (IP_TCP_PROTOCOL == protocol)
+	{
+        soad_ctx.fd = socket(AF_INET, SOCK_STREAM, 0);
+	}
+	else
+	{
+		soad_ctx.fd = socket(AF_INET, SOCK_DGRAM, 0);
+	}
     int on=1;
     if (soad_ctx.fd < 0) {
         perror("socket");
@@ -82,6 +89,10 @@ soad_ctx_t soad_openSocket(ip_protocol_t protocol, char* ip ,uint32_t port )
     if (ret < 0) {
       perror("bind error\n");
     }
+    if (IP_TCP_PROTOCOL == protocol)
+	{
+        listen(soad_ctx.fd, 10);
+	}
     return(soad_ctx);
 }
 
@@ -145,17 +156,17 @@ int soad_recieve(soad_ctx_t* soad_ctx, uint8_t* msg , size_t* size, int* port)
 	struct sockaddr_in client_addr;
 	int count = 0x00;
 	int addr_len = sizeof(client_addr);
-	printf("recieve a msg");
+	printf("recieve a msg \n");
 	 
-        count = recvfrom(soad_ctx->fd, msg , 1024, 0, (struct sockaddr*)&client_addr, &addr_len);
-        printf("count = %d\n", count);
-        printf("port = %d\n", ntohs(client_addr.sin_port));
-        *port= ntohs(client_addr.sin_port);
-        printf("addr = %d\n", client_addr.sin_addr.s_addr);
-        for (int i = 0x00; i < count ; i++){
-			printf("0x%x",msg[i]);
-			printf("\n");
-		}
+    count = recvfrom(soad_ctx->fd, msg , 1024, 0, (struct sockaddr*)&client_addr, &addr_len);
+    printf("count = %d\n", count);
+    printf("port = %d\n", ntohs(client_addr.sin_port));
+    *port= ntohs(client_addr.sin_port);
+    printf("addr = %d\n", client_addr.sin_addr.s_addr);
+    for (int i = 0x00; i < count ; i++){
+	    printf("0x%x",msg[i]);
+	    printf("\n");
+    }
     *size=1024;
 }
 int soad_finilize()
