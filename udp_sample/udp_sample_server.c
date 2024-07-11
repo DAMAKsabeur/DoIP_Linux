@@ -17,7 +17,6 @@ int main() {
 	char buffer[MAXLINE];
 	char *hello = "Hello from server";
 	struct sockaddr_in servaddr, cliaddr;
-    char* ip = "127.219.135.255";
 	// Creating socket file descriptor
 	if ( (sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0 ) {
 		perror("socket creation failed");
@@ -29,7 +28,7 @@ int main() {
 		
 	// Filling server information
 	servaddr.sin_family = AF_INET; // IPv4
-	servaddr.sin_addr.s_addr = inet_addr(ip);
+	servaddr.sin_addr.s_addr = INADDR_ANY;
 	servaddr.sin_port = htons(PORT);
 	int on=1;
 	setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, &on, sizeof(on));

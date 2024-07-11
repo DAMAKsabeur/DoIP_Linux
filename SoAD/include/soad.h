@@ -2,13 +2,12 @@
 #define SOAD_H
 #include "soad_error_code.h"
 #include "soad_types.h"
-#define soad_handler uint32_t  
-int soad_initalize();
-soad_ctx_t soad_openSocket(ip_protocol_t protocol, char* ip ,uint32_t port );
-soad_ctx_t soad_openRXSocket(ip_protocol_t protocol, char* ip ,uint32_t port );
-int soad_sendmsg(soad_ctx_t* soad_ctx, uint8_t* msg , size_t size, int port);
-int soad_recieve(soad_ctx_t* soad_ctx, uint8_t* msg , size_t* size, int* port);
-soad_closeSocket(soad_ctx_t *soad_ctx);
-int soad_finilize();
+
+
+soad_handler_t soad_open_udp_Socket(void* read_callback, ip_protocol_t protocol, char* ip ,uint32_t port );
+soad_handler_t soad_open_tcp_Socket(void* read_callback, ip_protocol_t protocol, char* ip ,uint32_t port );
+
+int soad_send_udp_msg(soad_handler_t soad_handler, uint8_t* msg , size_t size, int port);
+int soad_send_tcp_msg(soad_ctx_t* soad_ctx, uint8_t* msg , size_t size, int port);
 
 #endif /* SOAD_H */
