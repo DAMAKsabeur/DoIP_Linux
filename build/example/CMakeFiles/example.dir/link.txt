@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/example.dir/example.c.o  -o example -Wl,-rpath,/home/uic56995/DoIP_Linux/build/doip:/home/uic56995/DoIP_Linux/build/SoAD ../doip/libdoip.so ../SoAD/libSoAD.so -lpthread 

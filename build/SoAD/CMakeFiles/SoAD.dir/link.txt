@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC   -shared -Wl,-soname,libSoAD.so -o libSoAD.so CMakeFiles/SoAD.dir/src/soad.c.o -lpthread 
