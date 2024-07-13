@@ -20,7 +20,7 @@ doip_error_t Vehicle_announcement_message_resp (doip_msg_t* doip_msg, int src_pr
 	printf("Vehicle_announcement_message_resp \n");
     doip_msg->doip_header.proto_version = 0x02;
     doip_msg->doip_header.inverse_proto_version = 0xFD;
-    doip_msg->doip_header.type = ntohs(0x0004);
+    doip_msg->doip_header.type = ntohs(Vehicle_announcement_message);
     //~ memcpy(doip_msg.payload , message , strlen(message));
     memset(doip_msg->payload, 0xAB , 17); /* VNI */
     doip_msg->payload[17] = 0xEE;

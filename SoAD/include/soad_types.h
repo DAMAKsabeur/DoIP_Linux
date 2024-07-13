@@ -28,6 +28,7 @@ typedef struct
     int connfd;
     struct sockaddr_in client_addr;
     struct sockaddr_in server_addr;
+    ip_protocol_t ip_protocol;
     void* callback;
 } soad_ctx_t;
 
