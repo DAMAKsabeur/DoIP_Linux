@@ -9,6 +9,7 @@ cmake_minimum_required(VERSION 3.10.2)
 
 project(DoIP)
 
+add_subdirectory(uds)
 add_subdirectory(doip)
 add_subdirectory(SoAD)
 add_subdirectory(example)

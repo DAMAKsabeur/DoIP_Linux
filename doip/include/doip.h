@@ -7,5 +7,5 @@
 #include "Routing_activation.h"
 #include "Vehicle_Identification.h"
 
-doip_error_t doip_int(void);
-doip_error_t doip_unint(void);
+doip_error_t doip_init(void);
+doip_error_t doip_uninit(void);

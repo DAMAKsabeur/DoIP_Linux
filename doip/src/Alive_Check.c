@@ -7,7 +7,8 @@ doip_error_t Alive_status_Check (doip_msg_t* doip_msg, int src_protocole, void* 
 	printf("proto_version = 0x%x\n", doip_msg->doip_header.proto_version);
 	printf("type = 0x%x\n", doip_msg->doip_header.type);
 	printf("length = 0x%x\n", doip_msg->doip_header.length);
-	printf("Source address = 0x%x,0x%x\n", doip_msg->payload[0] , doip_msg->payload[1]);
+	printf("Source address = 0x%0.2x%0.2x\n", doip_msg->payload[0] , doip_msg->payload[1]);
+	printf("target address = 0x%0.2x%0.2x\n", doip_msg->payload[2] , doip_msg->payload[3]);
 
     return(0);	
 }

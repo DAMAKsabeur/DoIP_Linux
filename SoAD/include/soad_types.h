@@ -13,7 +13,7 @@
 #include <arpa/inet.h>
 #define soad_handler_t uint64_t  
 
-typedef int (*callback_fct)(uint8_t* doip_msg, int src_protocole, void* sender, soad_handler_t * soad_handler);
+typedef int (*callback_fct)(uint8_t* doip_msg, int src_protocole, void* sender, soad_handler_t soad_handler);
 typedef enum
 {
     IP_TCP_PROTOCOL       =0x00,

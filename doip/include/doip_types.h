@@ -2,6 +2,9 @@
 #define DOIP_TYPES_H
 #include <stdint.h>
 #include <stddef.h>
+#include <stdio.h>
+#include <arpa/inet.h>
+#include <string.h>
 #define PORT 13400
 
 #define doip_error_t size_t

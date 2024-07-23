@@ -1,4 +1,8 @@
 from doipclient import DoIPClient
+from uds import Uds
+
+# ~ ecu = Uds(transportProtocol="DoIP", ecu_ip="10.0.2.15", ecu_logical_address=0x00E0)
+
 # ~ from doipclient.connectors import DoIPClientUDSConnector
 # ~ from udsoncan.client import Client
 # ~ from udsoncan.services import *
@@ -26,11 +30,17 @@ print("port" , port)
 print("logical_address" , logical_address)
 
 print("routing activation")
-client = DoIPClient("10.0.2.15", 13400)
+client = DoIPClient("10.0.2.15", logical_address)
 print(client.request_entity_status())
 print(client.request_diagnostic_power_mode())
 print(client.request_alive_check())
 
 key = bytes([0x10, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
 
-print(client.send_diagnostic(key))
+key = bytes([0x27, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)

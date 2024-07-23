@@ -37,7 +37,7 @@ int doip_process_msg_callback(uint8_t* const buffer, int src_protocole, void* co
     return (result);
 }
 
-doip_error_t doip_int(void)
+doip_error_t doip_init(void)
 {
 	/* 1- initialize a broadcast socket 
 	 * 2- send 3 times a broadcast message with vehicule annoncement
@@ -56,7 +56,7 @@ doip_error_t doip_int(void)
     return (result);
 }
 
-doip_error_t doip_unint(void)
+doip_error_t doip_uninit(void)
 {
 	/* kill udp read thread 
 	 * close udp socket
