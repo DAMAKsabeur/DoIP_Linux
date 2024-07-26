@@ -9,6 +9,7 @@ cmake_minimum_required(VERSION 3.10.2)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/SoAD/include)
+include_directories(${PROJECT_SOURCE_DIR}/doip/include)
 # source file liste
 set(LIB_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Diagnostic_srv.c
@@ -78,6 +79,6 @@ set(LIB_HEADERS
     )
 
 add_library(uds SHARED ${LIB_SRCS} ${LIB_HEADERS})
-#~ target_link_libraries(doip SoAD)
+target_link_libraries(uds rt)
 install (TARGETS uds DESTINATION lib)
 install (FILES ${HEADER_FILES} DESTINATION include)

@@ -1,6 +1,6 @@
 from doipclient import DoIPClient
 from uds import Uds
-
+import binascii
 # ~ ecu = Uds(transportProtocol="DoIP", ecu_ip="10.0.2.15", ecu_logical_address=0x00E0)
 
 # ~ from doipclient.connectors import DoIPClientUDSConnector
@@ -40,7 +40,62 @@ print("send_diagnostic")
 response = client.send_diagnostic(key)
 print(response)
 
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+
 key = bytes([0x27, 0x01])
 print("send_diagnostic")
 response = client.send_diagnostic(key)
+print(response)
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+key = bytes([0x10, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
+
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+
+key = bytes([0x27, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+key = bytes([0x10, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
+
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+
+key = bytes([0x27, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+key = bytes([0x10, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
+
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
+print(response)
+
+key = bytes([0x27, 0x01])
+print("send_diagnostic")
+response = client.send_diagnostic(key)
+print(response)
+print("xxxxxxxxxxxxxxxxxxx")
+response = client.receive_diagnostic(timeout=20)
 print(response)

@@ -24,7 +24,7 @@ static void *read_udp_fct(void *arg)
         count = recvfrom(soad_ctx_p->sock, &buffer, sizeof(buffer), 0, (struct sockaddr*)&soad_ctx_p->client_addr, &addr_len);
         if (count != 0)
         {
-			rc =pf(buffer, 0, NULL, soad_handler);
+			rc =pf(soad_handler, buffer,sizeof(buffer));
 		}
 		usleep(500);
     }
@@ -47,7 +47,7 @@ static void *read_tcp_fct(void *arg)
         count = read(soad_ctx_p->connfd, &buffer, sizeof(buffer)); 
         if (count != 0)
         {
-			rc =pf(buffer, 0, NULL, soad_handler);
+			rc =pf(soad_handler, buffer, sizeof(buffer));
 		}
 		usleep(500);
     }
@@ -107,8 +107,7 @@ soad_handler_t soad_open_tcp_Socket(void* const  callback, ip_protocol_t protoco
     if (soad_ctx->sock == -1) { 
         printf("socket creation failed...\n"); 
     } 
-    else
-        printf("Socket successfully created..\n"); 
+
     addr_len = sizeof(struct sockaddr_in);
     
     memset((void*)&soad_ctx->server_addr, 0, addr_len);
@@ -122,15 +121,12 @@ soad_handler_t soad_open_tcp_Socket(void* const  callback, ip_protocol_t protoco
     if ((bind(soad_ctx->sock, (struct sockaddr*)&soad_ctx->server_addr, sizeof(soad_ctx->server_addr))) != 0) { 
         printf("socket bind failed...\n"); 
     } 
-    else
-        printf("Socket successfully binded..\n"); 
    
     // Now server is ready to listen and verification 
     if ((listen(soad_ctx->sock, 5)) != 0) { 
         printf("Listen failed...\n"); 
     } 
-    else
-        printf("Server listening..\n"); 
+
     len = sizeof(struct sockaddr); 
    
     // Accept the data packet from client and verification 
@@ -138,8 +134,6 @@ soad_handler_t soad_open_tcp_Socket(void* const  callback, ip_protocol_t protoco
     if (soad_ctx->connfd < 0) { 
         printf("server accept failed...\n"); 
     } 
-    else
-        printf("server accept the client...\n"); 
     
     soad_ctx->callback = callback;
     pthread_create(&th, &attr, read_tcp_fct, soad_ctx);
@@ -178,7 +172,6 @@ static int soad_send_tcp_msg(soad_handler_t soad_handler, uint8_t* msg , size_t 
 {
 	int result = 0x00 ,count =0x00;
 	doip_msg_t doip_msg;
-	
 	memcpy(&doip_msg, msg, size);
 	soad_ctx_t* soad_ctx = (soad_ctx_t*)soad_handler;
 	size = htonl(doip_msg.doip_header.length);

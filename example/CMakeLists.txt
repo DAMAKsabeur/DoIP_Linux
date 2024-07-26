@@ -8,10 +8,12 @@
 cmake_minimum_required(VERSION 3.10.2)
 
 include_directories(${PROJECT_SOURCE_DIR}/doip/include)
+include_directories(${PROJECT_SOURCE_DIR}/uds/include)
+include_directories(${PROJECT_SOURCE_DIR}/SoAD/include)
 #~ # source file liste
 set(SAMPLE_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/example.c
     )
 
 add_executable(example ${SAMPLE_SRCS} ${LIB_HEADERS})
-target_link_libraries(example doip)
+target_link_libraries(example doip uds)

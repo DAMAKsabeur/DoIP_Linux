@@ -1,5 +1,5 @@
 /*
- * uds_srv_common.h
+ * Diagnostic_srv.h
  *
  *  Created on: Jul 22, 2024
  *      Author: uic56995
@@ -11,6 +11,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "Diagnostic_error.h"
+#include "soad.h"
 #include "Access_Timing_Parameters.h"
 #include "Diagnostic_Session_Control.h"
 #include "Link_Control.h"
@@ -110,5 +111,8 @@ typedef struct
     SeedRequired_t          SeedKeyNeeded;
     FingerPrintRequired_t   fingerprintNeeded;
 } uds_services_t;
+
+uds_error_code_t Diagnostic_srv_exec (soad_handler_t soad_handler, uint8_t* msg ,size_t msgsize);
+uds_error_code_t Diagnostic_srv_init(void);
 
 #endif /* DIAGNOSTIC_SRV_H_ */

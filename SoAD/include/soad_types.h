@@ -13,7 +13,6 @@
 #include <arpa/inet.h>
 #define soad_handler_t uint64_t  
 
-typedef int (*callback_fct)(uint8_t* doip_msg, int src_protocole, void* sender, soad_handler_t soad_handler);
 typedef enum
 {
     IP_TCP_PROTOCOL       =0x00,
@@ -22,6 +21,8 @@ typedef enum
     IP_LAST_PROTOCOL
 }ip_protocol_t;
 
+typedef int (*callback_fct)(soad_handler_t soad_handler, uint8_t* doip_msg, ip_protocol_t src_protocole);
+
 typedef struct 
 {
     int sock;
@@ -29,8 +30,7 @@ typedef struct
     struct sockaddr_in client_addr;
     struct sockaddr_in server_addr;
     ip_protocol_t ip_protocol;
-    void* callback;
+    callback_fct callback;
 } soad_ctx_t;
-
 
 #endif /* SOAD_TYPES_H */

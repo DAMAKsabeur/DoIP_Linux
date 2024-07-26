@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include "soad_types.h"
 #define PORT 13400
 
 #define doip_error_t size_t
@@ -44,14 +45,14 @@ typedef struct
     uint8_t payload[256];
 } doip_msg_t;
 
-typedef doip_error_t (*doip_callback_fct)(doip_msg_t* doip_msg, int src_protocole, void* sender);
+//typedef doip_error_t (*doip_callback_fct)(doip_msg_t* doip_msg, int src_protocole, void* sender);
 //typedef int (*callback_fct)(uint8_t* doip_msg, int src_protocole, void* sender);
 typedef struct
 {
 	doip_message_type_t request;
-	doip_callback_fct request_check_fct;
+	callback_fct request_check_fct;
 	doip_message_type_t response;
-	doip_callback_fct response_fct;
+	callback_fct response_fct;
 	char log[256];
 }doip_state_t;
 

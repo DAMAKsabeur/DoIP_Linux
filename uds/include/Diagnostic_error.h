@@ -34,7 +34,8 @@ typedef enum
     e_SubFunctionNotSupportedInActiveDiagnosticSession = 0x7Eu,
     e_ServiceNotSupportedInActiveDiagnosticSession     = 0x7Fu,
     e_VoltageTooHigh                                   = 0x92u,
-    e_VoltageTooLow                                    = 0x93u
+    e_VoltageTooLow                                    = 0x93u,
+    e_Error_last
 } uds_error_code_t;
 
 #endif /* DIAGNOSTIC_ERROR_CODE_H_ */

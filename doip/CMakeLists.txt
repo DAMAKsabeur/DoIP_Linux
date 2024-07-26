@@ -10,6 +10,7 @@ cmake_minimum_required(VERSION 3.10.2)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/SoAD/include)
 include_directories(${PROJECT_SOURCE_DIR}/uds/include)
+include_directories(${PROJECT_SOURCE_DIR}/doip/include)
 # source file liste
 set(LIB_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Alive_Check.c  
